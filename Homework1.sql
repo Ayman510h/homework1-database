@@ -2,7 +2,6 @@
 -- University ID: 202220609
 
 
-
 -- Q1) Employee Database DDL
 
 
@@ -38,7 +37,6 @@ CREATE TABLE manages (
 -- Q2) Bank Database Queries
 
 
--- A) Customers who have an account but not a loan
 SELECT DISTINCT d.ID
 FROM depositor d
 WHERE d.ID NOT IN (
@@ -46,7 +44,7 @@ WHERE d.ID NOT IN (
     FROM borrower b
 );
 
--- B) Customers who live on the same street and city as customer '54321'
+
 SELECT c.ID
 FROM customer c
 WHERE c.customer_street = (
@@ -59,11 +57,11 @@ WHERE c.customer_street = (
         FROM customer 
         WHERE ID = '54321'
     )
-  AND c.ID <> '54321';  -- Exclude the same customer
+  AND c.ID <> '54321';
 
--- C) Branches that have at least one customer living in "Harrison"
 SELECT DISTINCT a.branch_name
 FROM account a
 JOIN depositor d ON a.account_number = d.account_number
 JOIN customer c ON d.ID = c.ID
 WHERE c.customer_city = 'Harrison';
+
